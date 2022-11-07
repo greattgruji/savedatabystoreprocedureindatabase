@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<html>
+<head>
+    <h2>Index</h2>
+
+   
+
+</head>
+<body>
+    <table class="table table-bordered table table table-hover">
+        <tr>
+            <td>Name</td>
+            <td>
+                <input type="text" id="txtName" placeholder="Enter Name" />
+            </td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>
+                <input type="text" id="txtEmail" placeholder="Enter Email" />
+            </td>
+        </tr>
+        <tr>
+            <td>ContactNo</td>
+            <td>
+                <input type="text"  id="txtContactNo" placeholder="Enter ContactNo"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Subject</td>
+            <td>
+                <input type="text" id="txtSubject" placeholder="Enter ContactNo"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Message</td>
+            <td>
+                <input type="text" id="txtMessage" placeholder="Enter Message" />
+            </td>
+        </tr>
+        <tr>
+            <td> </td>
+            <td>
+                <button type="button" id="btnSave"  onclick="return SaveData();">Save </button>
+            </td>
+        </tr>
+        @*<input type="button" id="btnSave" placeholder="Save" />*@
+        @*<button type="submit" class="btn btn-primary">Submit</button>*@
+
+    </table>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready( function() {
+
+    });
+    debugger;
+    function SaveData() {
+        var oEmployee = {
+            Name: $("#txtName").val(),
+            Email: $("#txtEmail").val(),
+            ContactNo: $("#txtContactNo").val(),
+            Subject: $("#txtSubject").val(),
+            Message: $("#txtMessage").val()
+        }
+        $.ajax({
+            type: "post",
+            datatype: "json",
+            url: "/Employee/save",
+            traditional: true,
+            data: JSON.stringify(oEmployee),
+            contentType: "Application/json; charset=utf-8",
+            success: function (data) {
+                oEmployee = jQuery.parseJSON(data);
+                alert("save.");
+                debugger;
+            }
+
+        });
+       
+    }
+</script>
